@@ -26,8 +26,8 @@
 
 body {
     font-family: var(--fonte);
-    background: #DBD2E0;
-    background: linear-gradient(90deg, #DBD2E0 0%, --cor-primaria-2);
+    background: #002400 ;
+    background: linear-gradient(90deg,rgba(0, 36, 0, 1) 15%, rgba(39, 59, 9, 1) 45%, rgba(88, 100, 29, 1) 78%, rgba(123, 144, 75, 1) 100%);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -43,5 +43,5 @@ body {
     box-shadow: 0 8px 24px var(--cor-sombra);
     width: 100%;
     max-width: 400px;
-    text-align: center;
+    text-align: ;
 }
