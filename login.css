@@ -43,5 +43,9 @@ body {
     box-shadow: 0 8px 24px var(--cor-sombra);
     width: 100%;
     max-width: 400px;
-    text-align: ;
+    text-align: center;
+}
+
+input{ 
+    border-radius: var(--raio)
 }
