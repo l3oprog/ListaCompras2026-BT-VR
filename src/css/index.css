@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 :root {
     --cor-primaria-1:#002400 ;
     --cor-primaria-2:#273B09 ;
@@ -25,8 +27,8 @@
 body {
     font-family: var(--fonte);
     color: var(--cor-branco);
-    background: #001F54;
-    background: radial-gradient(circle, #002400(0, 31, 84, 1) 0%, #273B09(3, 64, 120, 1) 40%, #7B904B(18, 130, 162, 1) 90%);
+    background: #002400;
+    background: radial-gradient(circle, #002400(0, 31, 84, 1) 0%, #273B09(3, 64, 120, 1) 40%,#58641D(18, 130, 162, 1) 90%);
     display: flex;
     justify-content: center;
     align-items: center;
