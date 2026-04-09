@@ -1,18 +1,24 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="src/css/login.css">
-    
+    <link rel="manifest" href="manifest.json">
+    <link rel="shortcut icon" href="src/icons/favicon.ico" type="image/x-icon">
+
 </head>
+
 <body>
+
     <div class="container">
-        <h2>Login</h2>
-        <input type="email" id="email" placeholder="  E-mail">
-        <input type="password" id="senha" placeholder="  Senha">
-        
+        <img id="logo" src="src/icons/icon-512x512.png" alt="Logo">
+        <h2 class="titulo" id="titulolog">Login</h2>
+        <input type="email" id="email" placeholder="Digite seu E-mail">
+        <input type="password" id="senha" placeholder="Digite sua Senha">
+
         <div class="botoes">
             <button onclick="login()">Entrar</button>
             <button onclick="cadastro()">Cadastrar</button>
@@ -20,7 +26,8 @@
     </div>
 
     <script type="module" src="auth.js"></script>
-    
+
+
     <script>
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
@@ -34,5 +41,7 @@
             });
         }
     </script>
+
 </body>
+
 </html>
