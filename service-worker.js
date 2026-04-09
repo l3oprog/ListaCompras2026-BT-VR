@@ -1,4 +1,4 @@
-const CACHE_NAME = 'lista-compras-v1';
+const CACHE_NAME = 'lista-compras-v2';
 const urlsToCache = [
   '/',
   '/login.html',
