@@ -16,6 +16,23 @@
     --transition: 0.3s ease ;
 }
 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--fonte);
+    color: var(--cor-branco);
+    background: #001F54;
+    background: radial-gradient(circle, #002400(0, 31, 84, 1) 0%, #273B09(3, 64, 120, 1) 40%, #7B904B(18, 130, 162, 1) 90%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
 
 .container {
     background: var(--cor-branco);
