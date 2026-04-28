@@ -1,347 +1,42 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista 2026 • Minhas Compras</title>
+    <title>Lista 2026</title>
     <link rel="stylesheet" href="src/css/index.css">
     <link rel="shortcut icon" href="src/icons/favicon.ico" type="image/x-icon">
     <link rel="manifest" href="manifest.json">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
 </head>
 
 <body>
-    <!-- Background Decorativo -->
-    <div class="background-decoration">
-        <div class="blob blob-1"></div>
-        <div class="blob blob-2"></div>
-        <div class="blob blob-3"></div>
-    </div>
 
     <div class="container">
-        <!-- Header Premium -->
-        <header class="app-header">
-            <div class="header-content">
-                <div class="user-section">
-                    <div class="avatar-wrapper">
-                        <img src="src/icons/icon-512x512.png" alt="Avatar" class="avatar">
-                        <span class="online-indicator"></span>
-                    </div>
-                    <div class="user-info">
-                        <h2 class="greeting">Olá, <span id="userName">Usuário</span>! 👋</h2>
-                        <p class="date" id="currentDate"></p>
-                    </div>
-                </div>
-                <div class="header-actions">
-                    <button class="icon-btn" onclick="shareList()" title="Compartilhar lista">
-                        <i class="fas fa-share-alt"></i>
-                    </button>
-                    <button class="icon-btn" onclick="showNotifications()" title="Notificações">
-                        <i class="far fa-bell"></i>
-                        <span class="notification-badge">3</span>
-                    </button>
-                    <button class="icon-btn logout-btn" onclick="logout()" title="Sair">
-                        <i class="fas fa-sign-out-alt"></i>
-                    </button>
-                </div>
-            </div>
-        </header>
+        <h1 class="Titulo">Lista de Compras 2026</h1>
 
-        <!-- Progresso e Estatísticas -->
-        <div class="stats-container">
-            <div class="stat-card">
-                <div class="stat-icon">
-                    <i class="fas fa-shopping-cart"></i>
-                </div>
-                <div class="stat-content">
-                    <span class="stat-value" id="totalItems">0</span>
-                    <span class="stat-label">Total de itens</span>
-                </div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-icon">
-                    <i class="fas fa-check-circle"></i>
-                </div>
-                <div class="stat-content">
-                    <span class="stat-value" id="checkedItems">0</span>
-                    <span class="stat-label">Comprados</span>
-                </div>
-            </div>
-            <div class="progress-wrapper">
-                <div class="progress-bar">
-                    <div class="progress-fill" id="progressFill" style="width: 0%"></div>
-                </div>
-                <span class="progress-text" id="progressText">0% concluído</span>
-            </div>
-        </div>
 
-        <!-- Área de Pesquisa e Filtros -->
-        <div class="search-section">
-            <div class="search-wrapper">
-                <i class="fas fa-search search-icon"></i>
-                <input type="text" id="searchInput" class="search-input" placeholder="Pesquisar itens...">
-                <button class="clear-search" id="clearSearch" style="display: none;">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            <div class="filter-chips">
-                <button class="filter-chip active" data-filter="all">
-                    <i class="fas fa-list"></i>
-                    <span>Todos</span>
-                </button>
-                <button class="filter-chip" data-filter="pending">
-                    <i class="far fa-circle"></i>
-                    <span>Pendentes</span>
-                </button>
-                <button class="filter-chip" data-filter="completed">
-                    <i class="fas fa-check-circle"></i>
-                    <span>Comprados</span>
-                </button>
-            </div>
-        </div>
+        <ul id="lista"></ul>
 
-        <!-- Lista de Compras -->
-        <div class="list-container">
-            <div class="list-header">
-                <h3 class="list-title">
-                    <i class="fas fa-clipboard-list"></i>
-                    Minha Lista
-                </h3>
-                <button class="sort-btn" onclick="toggleSortMenu()" title="Ordenar">
-                    <i class="fas fa-sort-amount-down"></i>
-                </button>
-            </div>
-            
-            <!-- Estado Vazio -->
-            <div class="empty-state" id="emptyState">
-                <div class="empty-illustration">
-                    <i class="fas fa-shopping-basket"></i>
-                </div>
-                <h4>Sua lista está vazia</h4>
-                <p>Adicione itens para começar suas compras!</p>
-                <button class="btn-add-first" onclick="focusAddInput()">
-                    <i class="fas fa-plus"></i>
-                    Adicionar primeiro item
-                </button>
-            </div>
+        <input type="text" id="item" placeholder="Novo item">
+        <button onclick="adicionarItem()">Adicionar</button>
+        <button onclick="logout()">sair</button>
 
-            <!-- Lista de Itens -->
-            <ul id="lista" class="shopping-list"></ul>
-        </div>
-
-        <!-- FAB e Input de Adição -->
-        <div class="add-section">
-            <div class="add-input-wrapper" id="addInputWrapper">
-                <input type="text" id="item" class="add-input" placeholder="O que você precisa comprar?">
-                <div class="input-actions">
-                    <button class="voice-btn" onclick="startVoiceInput()" title="Adicionar por voz">
-                        <i class="fas fa-microphone"></i>
-                    </button>
-                    <button class="category-btn" onclick="showCategoryPicker()" title="Escolher categoria">
-                        <i class="fas fa-tag"></i>
-                    </button>
-                </div>
-            </div>
-            <button class="fab-add" onclick="adicionarItem()" title="Adicionar item">
-                <i class="fas fa-plus"></i>
-            </button>
-        </div>
-
-        <!-- Menu de Ações Rápidas -->
-        <div class="quick-actions">
-            <button class="quick-action-btn" onclick="clearCompleted()">
-                <i class="fas fa-trash-alt"></i>
-                <span>Limpar comprados</span>
-            </button>
-            <button class="quick-action-btn" onclick="shareList()">
-                <i class="fas fa-share-alt"></i>
-                <span>Compartilhar</span>
-            </button>
-        </div>
     </div>
-
-    <!-- Modal de Categorias -->
-    <div class="modal" id="categoryModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3>Escolher categoria</h3>
-                <button class="modal-close" onclick="closeCategoryModal()">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            <div class="category-grid">
-                <div class="category-item" data-category="🛒 Geral">
-                    <span class="category-emoji">🛒</span>
-                    <span>Geral</span>
-                </div>
-                <div class="category-item" data-category="🍎 Hortifruti">
-                    <span class="category-emoji">🍎</span>
-                    <span>Hortifruti</span>
-                </div>
-                <div class="category-item" data-category="🥩 Carnes">
-                    <span class="category-emoji">🥩</span>
-                    <span>Carnes</span>
-                </div>
-                <div class="category-item" data-category="🥛 Laticínios">
-                    <span class="category-emoji">🥛</span>
-                    <span>Laticínios</span>
-                </div>
-                <div class="category-item" data-category="🧹 Limpeza">
-                    <span class="category-emoji">🧹</span>
-                    <span>Limpeza</span>
-                </div>
-                <div class="category-item" data-category="🍞 Padaria">
-                    <span class="category-emoji">🍞</span>
-                    <span>Padaria</span>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Toast de Notificação -->
-    <div class="toast" id="toast">
-        <i class="fas fa-check-circle"></i>
-        <span id="toastMessage">Item adicionado!</span>
-    </div>
-
     <script type="module" src="app.js"></script>
 
     <script>
-        // Service Worker
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
                 navigator.serviceWorker.register('/service-worker.js')
                     .then(registration => {
-                        console.log('✅ ServiceWorker registrado:', registration.scope);
+                        console.log('ServiceWorker registrado com sucesso:', registration.scope);
                     })
                     .catch(error => {
-                        console.log('❌ Falha no ServiceWorker:', error);
+                        console.log('Falha ao registrar o ServiceWorker:', error);
                     });
             });
-        }
-
-        // Atualizar data atual
-        function updateDate() {
-            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-            const date = new Date().toLocaleDateString('pt-BR', options);
-            document.getElementById('currentDate').textContent = date.charAt(0).toUpperCase() + date.slice(1);
-        }
-        updateDate();
-
-        // Gerenciar pesquisa
-        const searchInput = document.getElementById('searchInput');
-        const clearSearch = document.getElementById('clearSearch');
-        
-        searchInput.addEventListener('input', function() {
-            clearSearch.style.display = this.value ? 'block' : 'none';
-            filterItems(this.value);
-        });
-        
-        clearSearch.addEventListener('click', function() {
-            searchInput.value = '';
-            clearSearch.style.display = 'none';
-            filterItems('');
-        });
-
-        // Filtros
-        document.querySelectorAll('.filter-chip').forEach(chip => {
-            chip.addEventListener('click', function() {
-                document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
-                this.classList.add('active');
-                filterByStatus(this.dataset.filter);
-            });
-        });
-
-        // Mostrar Toast
-        function showToast(message, type = 'success') {
-            const toast = document.getElementById('toast');
-            const toastMessage = document.getElementById('toastMessage');
-            const icon = toast.querySelector('i');
-            
-            toastMessage.textContent = message;
-            icon.className = type === 'success' ? 'fas fa-check-circle' : 'fas fa-info-circle';
-            
-            toast.classList.add('show');
-            setTimeout(() => {
-                toast.classList.remove('show');
-            }, 3000);
-        }
-
-        // Voice Input
-        function startVoiceInput() {
-            if ('webkitSpeechRecognition' in window) {
-                const recognition = new webkitSpeechRecognition();
-                recognition.lang = 'pt-BR';
-                recognition.onresult = function(event) {
-                    document.getElementById('item').value = event.results[0][0].transcript;
-                    showToast('Item reconhecido por voz! 🎤', 'success');
-                };
-                recognition.start();
-            } else {
-                showToast('Reconhecimento de voz não suportado', 'info');
-            }
-        }
-
-        // Modal de Categorias
-        function showCategoryPicker() {
-            document.getElementById('categoryModal').classList.add('show');
-        }
-
-        function closeCategoryModal() {
-            document.getElementById('categoryModal').classList.remove('show');
-        }
-
-        document.querySelectorAll('.category-item').forEach(item => {
-            item.addEventListener('click', function() {
-                const category = this.dataset.category;
-                document.getElementById('item').dataset.category = category;
-                closeCategoryModal();
-                showToast(`Categoria: ${category}`, 'success');
-            });
-        });
-
-        // Focar input
-        function focusAddInput() {
-            document.getElementById('item').focus();
-        }
-
-        // Atualizar estatísticas (será chamado pelo app.js)
-        function updateStats(total, checked) {
-            document.getElementById('totalItems').textContent = total;
-            document.getElementById('checkedItems').textContent = checked;
-            
-            const percentage = total > 0 ? Math.round((checked / total) * 100) : 0;
-            document.getElementById('progressFill').style.width = percentage + '%';
-            document.getElementById('progressText').textContent = percentage + '% concluído';
-            
-            // Mostrar/esconder empty state
-            const emptyState = document.getElementById('emptyState');
-            const listContainer = document.querySelector('.list-container');
-            if (total === 0) {
-                emptyState.style.display = 'flex';
-            } else {
-                emptyState.style.display = 'none';
-            }
-        }
-
-        // Placeholder para funções que serão implementadas
-        function shareList() {
-            showToast('Link copiado para compartilhar! 📋', 'success');
-        }
-
-        function showNotifications() {
-            showToast('Você tem 3 itens pendentes', 'info');
-        }
-
-        function toggleSortMenu() {
-            showToast('Ordenar por: Mais recentes', 'info');
-        }
-
-        function clearCompleted() {
-            if (confirm('Remover todos os itens comprados?')) {
-                showToast('Itens comprados removidos!', 'success');
-            }
         }
     </script>
 </body>
